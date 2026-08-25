@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent: #E8A33D;
+  --glow-opacity: 0.15;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #090D14;
+}
+
+body {
+  color: #ECEFF4;
+  font-family: 'Space Grotesk', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+::selection {
+  background: rgba(232, 163, 61, 0.35);
+  color: #ECEFF4;
+}
+
+/* Ambient glow layer */
+.ambient-glow {
+  opacity: var(--glow-opacity);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.orb-scale {
+  transition: transform 70ms ease-out;
+}
+
+/* Sci-Fi Chamfered HUD clip paths (matching screenshot panels) */
+.hud-panel-chamfer {
+  clip-path: polygon(
+    18px 0%, 
+    100% 0%, 
+    100% calc(100% - 18px), 
+    calc(100% - 18px) 100%, 
+    0% 100%, 
+    0% 18px
+  );
+}
+
+.hud-panel-topleft {
+  clip-path: polygon(
+    20px 0%, 
+    100% 0%, 
+    100% 100%, 
+    0% 100%, 
+    0% 20px
+  );
+}
+
+.hud-panel-bottomright {
+  clip-path: polygon(
+    0% 0%, 
+    100% 0%, 
+    100% calc(100% - 20px), 
+    calc(100% - 20px) 100%, 
+    0% 100%
+  );
+}
+
+.hud-tag-badge {
+  clip-path: polygon(
+    8px 0%,
+    100% 0%,
+    calc(100% - 8px) 100%,
+    0% 100%
+  );
+}
+
+/* Glowing outlines */
+.hud-border-glow {
+  box-shadow: 0 0 15px rgba(232, 163, 61, 0.12), inset 0 0 15px rgba(232, 163, 61, 0.04);
+}
+
+.hud-border-glow-active {
+  box-shadow: 0 0 25px rgba(232, 163, 61, 0.28), inset 0 0 20px rgba(232, 163, 61, 0.08);
+}
+
+/* HUD Grid & Crosshairs */
+.hud-grid-overlay {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(232, 163, 61, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(232, 163, 61, 0.03) 1px, transparent 1px);
+}
+
+/* Fine scrollbar for HUD logs and history */
+.zailix-scroll::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+.zailix-scroll::-webkit-scrollbar-thumb {
+  background: rgba(232, 163, 61, 0.35);
+  border-radius: 2px;
+}
+.zailix-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(232, 163, 61, 0.6);
+}
+.zailix-scroll::-webkit-scrollbar-track {
+  background: rgba(16, 23, 36, 0.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin-slow,
+  .animate-spin-slow-reverse,
+  .animate-spin-fast,
+  .animate-spin-fast-reverse,
+  .animate-pulse-speak,
+  .animate-fade-in-up,
+  .animate-radar-sweep {
+    animation: none !important;
+  }
+  .orb-scale {
+    transition: none !important;
+  }
+}
